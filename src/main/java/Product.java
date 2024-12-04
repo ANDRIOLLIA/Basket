@@ -1,7 +1,7 @@
 public class Product {
-    private String name;
-    private int price;
-    private double weight;
+    private final String name;
+    private final int price;
+    private final double weight;
 
     public Product(String name, int price, double weight) {
         this.name = name;
@@ -13,25 +13,15 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 
     @Override
     public String toString() {

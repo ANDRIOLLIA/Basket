@@ -19,7 +19,7 @@ public class Main {
 //        System.out.println("Вторая корзина: " + secondBasket + "\n");
 //        System.out.println("Кол-во корзин: " + Basket.getCountBasket());
 
-        DeliveryOrder deliveryOrder = new DeliveryOrder(true, false, true);
+        DeliveryOrder deliveryOrder = new DeliveryOrder(DeliveryType.YES, IsFragile.NO, IsCold.YES);
         System.out.println(deliveryOrder.toString());
     }
 }

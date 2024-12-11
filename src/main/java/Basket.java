@@ -1,11 +1,14 @@
 public class Basket {
-    private int totalPrice = 0;
-    private String items = "";
+    private Product product;
+    public String items = "";
+    public int totalPrice = 0;
     private int limit = 1_000_000;
-    double totalWeight = 0;
+    private double totalWeight = 0;
+    private static int countBasket = 0;
 
     public Basket() {
-        items = "Список товаров:";
+        items = "Список товаров: ";
+        increaseCountBasket(1);
     }
 
     public Basket(int limit) {
@@ -19,12 +22,11 @@ public class Basket {
     }
 
     public void add(Product product, int count) {
-
         String name = product.getName();
         int price = product.getPrice();
         double weight = product.getWeight();
-
         price *= count;
+        totalWeight += (weight * count);
         if (totalPrice + price > limit) {
             return;
         } else if (containsItem(name)) {
@@ -50,10 +52,12 @@ public class Basket {
     public void print(String title) {
         System.out.println(title);
         if (items.isEmpty()) {
-            System.out.println("Корзина пуста!");
+            System.out.println("Корзина пустая");
         } else {
             System.out.println(items);
-            System.out.println("Стоимость данной корзины равна: " + getTotalPrice());
+            String info = "Стоимость данной корзины равна:" + getTotalPrice();
+            System.out.println(info);
+            System.out.println("Вес данной корзины: " + getTotalWeight());
         }
     }
 
@@ -65,20 +69,28 @@ public class Basket {
         return totalPrice;
     }
 
+    public double getTotalWeight() {
+        return totalWeight;
+    }
+
     public void setTotalPrice(int totalPrice) {
-        if(totalPrice > limit){
+        if (totalPrice > limit) {
             return;
         }
-            this.totalPrice = totalPrice;
+        this.totalPrice = totalPrice;
+    }
+
+    public static int getCountBasket() {
+        return countBasket;
+    }
+
+    public static void increaseCountBasket(int countBasket) {
+        Basket.countBasket += countBasket;
     }
 
     @Override
     public String toString() {
-        return "Basket{" +
-                "totalPrice=" + totalPrice +
-                ", items='" + items + '\'' +
-                ", limit=" + limit +
-                ", totalWeight=" + totalWeight +
-                '}';
+        return "Basket{" + "items='" + items + '\'' + ", totalPrice=" + totalPrice + ", limit=" + limit +
+                ", totalWeight=" + totalWeight + '}';
     }
 }

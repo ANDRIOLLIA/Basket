@@ -9,10 +9,21 @@ public class Product {
         this.weight = weight;
     }
 
+    public Product setName(String name) {
+        return new Product(name, price, weight);
+    }
+
+    public Product setPrice(int price) {
+        return new Product(name, price, weight);
+    }
+
+    public Product setWeight(double weight) {
+        return new Product(name, price, weight);
+    }
+
     public String getName() {
         return name;
     }
-
 
     public int getPrice() {
         return price;
@@ -22,13 +33,9 @@ public class Product {
         return weight;
     }
 
-
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", weight=" + weight +
-                '}';
+                "name='" + name + '\'' + ", price=" + price + ", weight=" + weight + '}';
     }
 }

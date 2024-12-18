@@ -1,4 +1,6 @@
 public enum DeliveryType {
-    YES,
-    NO
+
+    PEDESTRIAN,
+    CAR,
+    BIKE
 }

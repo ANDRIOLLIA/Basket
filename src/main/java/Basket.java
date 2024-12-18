@@ -2,13 +2,17 @@ public class Basket {
     private Product product;
     public String items = "";
     public int totalPrice = 0;
+    private static int totalPriceAllBaskets = 0;
     private int limit = 1_000_000;
     private double totalWeight = 0;
     private static int countBasket = 0;
+    private int countItems;
+    private static int countItemsAllBaskets = 0;
 
     public Basket() {
         items = "Список товаров: ";
         increaseCountBasket(1);
+        countItems = 0;
     }
 
     public Basket(int limit) {
@@ -34,9 +38,15 @@ public class Basket {
         } else if (items.isEmpty()) {
             items += name + " - " + price;
             totalPrice += price;
+            countItems += 1;
+            totalPriceAllBaskets += price;
+            countItemsAllBaskets += 1;
         } else {
             items += "\n" + name + " - " + price;
             totalPrice += price;
+            countItems += 1;
+            totalPriceAllBaskets += price;
+            countItemsAllBaskets += 1;
         }
     }
 
@@ -88,9 +98,21 @@ public class Basket {
         Basket.countBasket += countBasket;
     }
 
+    public int getAveragePrice() {
+        return totalPrice / countItems;
+    }
+
+    public static int getOveragePriceAllBaskets(){
+        return totalPriceAllBaskets / countItemsAllBaskets;
+    }
+
     @Override
     public String toString() {
-        return "Basket{" + "items='" + items + '\'' + ", totalPrice=" + totalPrice + ", limit=" + limit +
-                ", totalWeight=" + totalWeight + '}';
+        return
+                "Название товаров: " + items + "\n" +
+                "Общая цена корзины: " + totalPrice + "\n" +
+                "Ограничение по стоимости товаров: " +  limit + "\n" +
+                "Вес корзины: " + totalWeight + "\n" +
+                "Средняя стоимость продукта в данной корзине равна: " + getAveragePrice();
     }
 }
